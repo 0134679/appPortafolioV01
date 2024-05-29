@@ -1,0 +1,73 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Administrar Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Administrar Cliente</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <br>
+  <div>
+    <h1 style="text-align: center;">TTApp</h1>
+  </div>
+  <br>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="cliente.nombre" placeholder="Ingresar Nombre Cliente" [disabled]="!habilitarModificacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Rut</ion-label>
+      <ion-input [(ngModel)]="cliente.rut" placeholder="Ingresar Rut Cliente" [disabled]="!habilitarModificacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="cliente.contrasena" placeholder="Ingresar Contraseña" [disabled]="!habilitarModificacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Repetir Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="cliente.contrasena2" placeholder="Repetir Contraseña" [disabled]="!habilitarModificacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="cliente.email" placeholder="xxxxxx@email.com" [disabled]="!habilitarModificacion"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="button-container">
+    <ion-button (click)="eliminarCliente()">Eliminar Cliente</ion-button>
+    <ion-button (click)="bloquearCliente()">Bloquear Acceso Plataforma</ion-button>
+    <br>
+    <ion-item lines="none">
+      <ion-checkbox slot="start" [(ngModel)]="habilitarModificacion"></ion-checkbox>
+      <ion-label>Habilitar modificación de datos</ion-label>
+    </ion-item>
+  </div>
+
+  <br>
+  <div>
+    <ion-button (click)="modificarCliente()" [disabled]="!habilitarModificacion" expand="block">Modificar</ion-button>
+  </div>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>
+```

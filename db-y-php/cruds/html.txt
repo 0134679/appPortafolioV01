@@ -1,0 +1,21 @@
+<div>
+  <!-- Formulario para crear un nuevo cliente -->
+  <h2>Crear Nuevo Cliente</h2>
+  <form (ngSubmit)="crearCliente()">
+    <input type="text" [(ngModel)]="rut_cliente" placeholder="RUT Cliente"><br>
+    <input type="password" [(ngModel)]="password" placeholder="Contraseña"><br>
+    <input type="text" [(ngModel)]="nombre_cliente" placeholder="Nombre Cliente"><br>
+    <button type="submit">Crear Cliente</button>
+  </form>
+
+  <hr>
+
+  <!-- Lista de clientes existentes -->
+  <h2>Lista de Clientes</h2>
+  <ul>
+    <li *ngFor="let cliente of clientes">
+      {{ cliente.nombre_cliente }} ({{ cliente.rut_cliente }})
+      <button (click)="eliminarCliente(cliente.rut_cliente)">Eliminar</button>
+    </li>
+  </ul>
+</div>

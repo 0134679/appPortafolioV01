@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Administrar Vendedor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Administrar Vendedor</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <br>
+  <div>
+    <h1 style="text-align: center;">TTApp</h1>
+  </div>
+  <br>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="vendedor.nombre" placeholder="Ingresar Nombre Vendedor" [disabled]="!habilitarModificacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Rut</ion-label>
+      <ion-input [(ngModel)]="vendedor.rut" placeholder="Ingresar Rut Vendedor" [disabled]="!habilitarModificacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="vendedor.contrasena" placeholder="Ingresar Contraseña" [disabled]="!habilitarModificacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Repetir Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="vendedor.contrasena2" placeholder="Repetir Contraseña" [disabled]="!habilitarModificacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="vendedor.email" placeholder="xxxxxx@email.com" [disabled]="!habilitarModificacion"></ion-input>
+    </ion-item>
+
+    <br>
+    <h3>Modificación Datos Negocio</h3>
+
+    <ion-item>
+      <ion-label position="stacked">Nombre Negocio</ion-label>
+      <ion-input [(ngModel)]="vendedor.nombreNegocio" placeholder="Ingresar Nombre Negocio Vendedor" [disabled]="!habilitarModificacionNegocio"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Rut Negocio</ion-label>
+      <ion-input [(ngModel)]="vendedor.rutNegocio" placeholder="Ingresar Rut Negocio Vendedor" [disabled]="!habilitarModificacionNegocio"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-item lines="none">
+    <ion-checkbox slot="start" [(ngModel)]="habilitarModificacion"></ion-checkbox>
+    <ion-label>Habilitar modificación de datos</ion-label>
+  </ion-item>
+  <div class="button-container">
+    <ion-button (click)="eliminarVendedor()">Eliminar Vendedor</ion-button>
+    <ion-button (click)="bloquearVendedor()">Bloquear Acceso Plataforma</ion-button>
+    <br>
+    <div>
+      <ion-button (click)="modificarVendedor()" [disabled]="!habilitarModificacion" expand="block">Modificar</ion-button>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <div>
+    <h3>Acciones de Negocio</h3>
+    <ion-item lines="none">
+      <ion-checkbox slot="start" [(ngModel)]="habilitarModificacionNegocio"></ion-checkbox>
+      <ion-label>Aceptar condiciones para modificación de negocio</ion-label>
+    </ion-item>
+    <ion-button (click)="bloquearNegocio()" [disabled]="!habilitarModificacionNegocio" expand="block">Bloquear Negocio</ion-button>
+    <ion-button (click)="modificarNegocio()" [disabled]="!habilitarModificacionNegocio" expand="block">Modificar Negocio</ion-button>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,72 @@
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+  selector: 'app-gestion-clientes',
+  templateUrl: './gestion-clientes.component.html',
+  styleUrls: ['./gestion-clientes.component.css']
+})
+export class GestionClientesComponent {
+  clientes: any[] = [];
+  rut_cliente: string;
+  password: string;
+  nombre_cliente: string;
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    this.obtenerClientes();
+  }
+
+  // Obtener la lista de clientes
+  obtenerClientes() {
+    this.http.get<any[]>('http://localhost/listaCliente.php').subscribe(
+      (response) => {
+        this.clientes = response;
+      },
+      (error) => {
+        console.error('Error al obtener la lista de clientes:', error);
+      }
+    );
+  }
+
+  // Crear un nuevo cliente
+  crearCliente() {
+    const cliente = {
+      rut_cliente: this.rut_cliente,
+      password: this.password,
+      nombre_cliente: this.nombre_cliente
+    };
+
+    this.http.post('http://localhost/crear_cliente.php', cliente).subscribe(
+      (response) => {
+        console.log(response);
+        // Actualizar la lista de clientes después de crear uno nuevo
+        this.obtenerClientes();
+        // Limpiar los campos del formulario
+        this.rut_cliente = '';
+        this.password = '';
+        this.nombre_cliente = '';
+      },
+      (error) => {
+        console.error('Error al crear el cliente:', error);
+      }
+    );
+  }
+
+  // Eliminar un cliente existente
+  eliminarCliente(rut: string) {
+    if (confirm('¿Estás seguro de que quieres eliminar este cliente?')) {
+      this.http.delete(`http://localhost/eliminar_cliente.php?rut=${rut}`).subscribe(
+        (response) => {
+          console.log(response);
+          // Actualizar la lista de clientes después de eliminar uno
+          this.obtenerClientes();
+        },
+        (error) => {
+          console.error('Error al eliminar el cliente:', error);
+        }
+      );
+    }
+  }
+}

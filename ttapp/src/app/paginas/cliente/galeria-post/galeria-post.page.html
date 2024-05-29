@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/homeCliente"></ion-back-button>
+    </ion-buttons>
+    <ion-title>galeria-post</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [scrollY]="true" style="border:2; border-color: gray;">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">galeria-post</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+    <ion-content [scrollY]="true">
+      <ion-list>
+        <ion-item *ngFor="let noticia of noticias" >
+          <ion-thumbnail slot="start" >
+            <a href="#">
+            <img [src]="noticia.imagen" alt="Imagen del la Noticia" >
+          </a>
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ noticia.titulo }}</h2>
+            <p>{{ noticia.contenido }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
+  </ion-content>
